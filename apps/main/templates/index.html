@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<!-- <link rel="stylesheet" href="/static/css/cs.css"> -->
+
+<div class="card">
+
+  <div>
+    <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <img src="https://технотавр.рф/wp-content/uploads/2018/07/bytovaya-tehnika-jeto-produkcija-desjatkov-izvestnyh-kompanij-800x600-1.jpg" class="rounded mx-auto d-block" alt="...">
+      </div>
+      <div class="carousel-item">
+        <img src="https://st2.depositphotos.com/1001877/5866/i/450/depositphotos_58660993-stock-photo-home-appliances-set-of-household.jpg" class="rounded mx-auto d-block" alt="...">
+      </div>
+      <div class="carousel-item">
+        <img src="https://assets-global.website-files.com/599873abab717100012c91ea/613258aede92921b103853b2_357579.jpg" class="rounded mx-auto d-block" alt="...">
+      </div>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+  </div>
+</div>
+<div class="container7">
+    {% for h in category %}
+  <div class="block">
+    <div class="text-bg-light p-3">
+        <div style="text-align: center;"><h1>{{h.title}}</h1></div>
+    </div>
+    <div style="display: flex; flex-wrap:wrap; gap: 50px;">
+      {% for i in product %}
+      {% if i.category == h %}
+    <div style="display: flex; flex-wrap:wrap; gap: 50px; justify-content: space-between">
+      <div class="card m-5" style="width: 18rem;">
+        <img src="{{i.image.url}}" style="height:280px" class="card-img-top" alt="...">
+        <div class="card-body">
+              <h5 class="card-title"><a href="{% url 'result' i.id %}">{{i.title}}</a></h5>
+            <p class="card-text">{{i.description}}</p>
+            <h6 class="card-price">{{i.price}}</h6>
+          </div>
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item">An item</li>
+            <li class="list-group-item">A second item</li>
+            <li class="list-group-item">A third item</li>
+          </ul>
+          <div class="card-body">
+            <a href="#" class="card-link">Card link</a>
+            <a href="{% url 'add_to_cart' i.id %}" type="button" class="card-link">
+                <i class="fa-solid fa-cart-shopping"></i>
+            </a>
+          </div>
+          </div>
+          {% endif %}
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}

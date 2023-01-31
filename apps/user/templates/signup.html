@@ -1,0 +1,56 @@
+{% load static %}
+<form action="" method="post">
+    {% csrf_token %}
+
+    <link rel="stylesheet" href="{% static 'css/registration.css'%}">
+    <div class="logo">
+     
+    </div>
+    <div class="box bg-img">
+      <div class="content">
+            
+        <h2>Sign<span> Up</span></h2>
+        <form action="{% url 'signup' %}" method="post"></form>
+        {% csrf_token %}
+
+
+        <div class="forms">
+
+          <div class="user-input">
+            <label placeholder="user name" id="name" required for="{{ form.first_name.id_for_label }}"></label>
+            {{ form.first_name }}
+          </div>
+          <div class="user-input">
+            <label id="name" required name="last_name" for="{{ form.last_name.id_for_label }}"></label>
+            {{ form.last_name }}
+          </div>
+          <div class="user-input">
+            <label id="name" required name="username" for="{{ form.username.id_for_label }}"></label>
+            {{ form.username }}
+          </div>
+          <div class="user-input">
+            <label id="name" required name="email" for="{{ form.email.id_for_label }}"></label>
+            {{ form.email }}
+          </div> 
+          <div class="user-input">
+            <label id="name" required name="password1" for="{{ form.password1.id_for_label }}"></label>
+            {{ form.password1 }}
+            <label id="name" required name="password1" for="{{ form.password2.id_for_label }}"></label>
+            {{ form.password2 }}
+
+          </div>
+    
+        </div>
+    
+        <button class="login-btn">Sign In</button>    
+        <br>
+    
+        <p class="f-pass">
+          <a href="#">forgget password?</a>
+          <a class="mt-5" style="color: #ffce00;" href="{% url 'main'%}"> Home </a>
+        </p>
+      </div>
+    </div>
+    
+    <script src="https://kit.fontawesome.com/c0078485ae.js" crossorigin="anonymous"></script>
+    <script src="{% static 'sing_in.js'%}" crossorigin="#"></script></form>

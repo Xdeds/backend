@@ -1,0 +1,44 @@
+{% load static %}
+<form action="" method="post">
+    {% csrf_token %}
+
+    <link rel="stylesheet" href="{% static 'css/registration.css'%}"> 
+    <div class="logo">
+      
+    </div>
+    <div class="box bg-img">
+      <div class="content">
+        
+        <h2>Sign<span> In</span></h2>
+        <form action="{% url 'signup' %}" method="POST"></form>
+        {% csrf_token %}
+          
+          <div class="forms">
+            
+            <div class="user-input">
+              <label placeholder="user name" id="name" required for="{{ form.username.id_for_label }}"></label>
+            {{ form.username }}
+          </div>
+    
+          <div class="user-input">
+            <label placeholder="user name" id="name" required for="{{ form.password.id_for_label }}"></label>
+            {{ form.password }}
+          </div>
+          
+        </div>
+        
+        <button class="login-btn">Sign In</button>
+        
+        <p class="new-account">Not a member? <a href="{% url 'signup' %}">Sign Up now!</a></p>
+        
+        <br>
+        
+        <p class="f-pass">
+          <a href="#">forgget password?</a>
+          <a class="mt-5" style="color: #ffce00;" href="{% url 'main'%}"> Home </a>
+        </p>
+      </div>
+    </div>
+    
+    <script src="https://kit.fontawesome.com/c0078485ae.js" crossorigin="anonymous"></script>
+    <script src="{% static 'singin.js'%}" crossorigin="#"></script></form>
