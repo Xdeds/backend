@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+{% load cache %}
+
+{% block content %}
+
+<style>
+  .cardd{
+    margin: auto;
+    max-width: 950px;
+    width: 90%;
+    box-shadow: 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    border-radius: 1rem;
+    border: transparent;
+}
+@media(max-width:767px){
+    .cardd{
+        margin: 3vh auto;
+    }
+}
+</style>
+
+<div class="cardd">
+  <div class="container7">
+    <div class="block">
+      <div style="display: flex; flex-wrap:wrap; gap: 50px;">
+      {% cache 500 sidebar %}
+      {% for i in product %}
+    <div style="display: flex; flex-wrap:wrap; gap: 50px; justify-content: space-between">
+      <div class="card m-5" style="width: 18rem;">
+        <img src="{{i.image.url}}" style="height:280px" class="card-img-top" alt="...">
+        <div class="card-body">
+              <h5 class="card-title"><a href="{% url 'result' i.id %}">{{i.title}}</a></h5>
+            <p class="card-text">{{i.description}}</p>
+            <h6 class="card-price">{{i.price}}</h6>
+          </div>
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item">An item</li>
+            <li class="list-group-item">A second item</li>
+            <li class="list-group-item">A third item</li>
+          </ul>
+          <div class="card-body">
+            <a href="#" class="card-link">Card link</a>
+            <a href="{% url 'add_to_cart' i.id %}" type="button" class="card-link">
+                <i class="fa-solid fa-cart-shopping"></i>
+              </a>
+          </div>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+
+</div>
+</div>
+{% endcache %}
+
+{% endblock %}

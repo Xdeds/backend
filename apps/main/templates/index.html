@@ -1,21 +1,31 @@
 {% extends 'base.html' %}
 
+{% load static %}
+{% load cache %}
+
 {% block content %}
-<!-- <link rel="stylesheet" href="/static/css/cs.css"> -->
+<link rel="stylesheet" href="/static/css/menu.css">
 
-<div class="card">
+<nav class="nav">
+  <ul class="ul">
+    <li class="logo"><img src="https://i.imgur.com/E26Pj54.png"></li>
+    <li class="logogot"><a class="a" href="#" style="text-decoration: none; color:azure;"><h2>Categories</h2></a></li>
+    {% for g in category %}
+      <li class="logogo"><a class="a" href="{% url 'category' g.slug %}">{{g.title}}</a></li>
+    {% endfor %}
+  </ul>
+</nav>
 
-  <div>
-    <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel">
+<div class="wrapper">
+  <div class="section">
+      <div class="box-area">
+        
+        <div class="card">
+          <div>
+    <div  id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel">
     <div class="carousel-inner">
       <div class="carousel-item active">
-        <img src="https://технотавр.рф/wp-content/uploads/2018/07/bytovaya-tehnika-jeto-produkcija-desjatkov-izvestnyh-kompanij-800x600-1.jpg" class="rounded mx-auto d-block" alt="...">
-      </div>
-      <div class="carousel-item">
-        <img src="https://st2.depositphotos.com/1001877/5866/i/450/depositphotos_58660993-stock-photo-home-appliances-set-of-household.jpg" class="rounded mx-auto d-block" alt="...">
-      </div>
-      <div class="carousel-item">
-        <img src="https://assets-global.website-files.com/599873abab717100012c91ea/613258aede92921b103853b2_357579.jpg" class="rounded mx-auto d-block" alt="...">
+        <img src="https://habrastorage.org/webt/ex/nx/kp/exnxkpgpgvdl7gh5qtge1032cj4.jpeg" class="rounded mx-auto d-block" alt="...">
       </div>
     </div>
     <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="prev">
@@ -29,10 +39,11 @@
   </div>
 </div>
 <div class="container7">
-    {% for h in category %}
+  {% cache 500 sidebar %}
+  {% for h in category %}
   <div class="block">
     <div class="text-bg-light p-3">
-        <div style="text-align: center;"><h1>{{h.title}}</h1></div>
+      <div style="text-align: center;"><h1>{{h.title}}</h1></div>
     </div>
     <div style="display: flex; flex-wrap:wrap; gap: 50px;">
       {% for i in product %}
@@ -54,7 +65,7 @@
             <a href="#" class="card-link">Card link</a>
             <a href="{% url 'add_to_cart' i.id %}" type="button" class="card-link">
                 <i class="fa-solid fa-cart-shopping"></i>
-            </a>
+              </a>
           </div>
           </div>
           {% endif %}
@@ -63,5 +74,9 @@
       </div>
     </div>
     {% endfor %}
+  </div>
 </div>
+</div>
+</div>
+{% endcache %}
 {% endblock %}

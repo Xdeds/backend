@@ -8,10 +8,14 @@
     </div>
     <div class="box bg-img">
       <div class="content">
-        
         <h2>Sign<span> In</span></h2>
+        {% if form.non_field_errors %}
+        {{ form.non_field_errors }}
+        {% endif %}
+        
         <form action="{% url 'signup' %}" method="POST"></form>
-        {% csrf_token %}
+
+          {% csrf_token %}
           
           <div class="forms">
             
@@ -27,7 +31,7 @@
           
         </div>
         
-        <button class="login-btn">Sign In</button>
+        <button class="login-btn" type="submit">Sign In</button>
         
         <p class="new-account">Not a member? <a href="{% url 'signup' %}">Sign Up now!</a></p>
         

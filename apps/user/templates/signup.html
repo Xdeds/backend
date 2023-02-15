@@ -4,11 +4,17 @@
 
     <link rel="stylesheet" href="{% static 'css/registration.css'%}">
     <div class="logo">
-     
+
     </div>
     <div class="box bg-img">
       <div class="content">
-            
+        {% if form.errors %}
+        {% for i in form %}
+          {% for error in i.errors %}
+            {{ error|escape }}
+          {% endfor %}
+        {% endfor %}
+      {% endif %}
         <h2>Sign<span> Up</span></h2>
         <form action="{% url 'signup' %}" method="post"></form>
         {% csrf_token %}
@@ -42,7 +48,7 @@
     
         </div>
     
-        <button class="login-btn">Sign In</button>    
+        <button class="login-btn" type="submit">Sign In</button>    
         <br>
     
         <p class="f-pass">

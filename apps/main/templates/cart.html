@@ -62,15 +62,40 @@
 
                   <hr class="my-4">
 
-<div class="d-flex justify-content-between mb-5">
+                <div class="d-flex justify-content-between mb-5">
                     <h5 class="text-uppercase">Total price</h5>
                     <h5>{{total_price}}</h5>
                   </div>
+                  <form method="POST">
 
-                  <button type="button" class="btn btn-dark btn-block btn-lg"
+                    <table class="table">
+                      <thead>
+                        <tr>
+                          <th scope="col">id</th>
+                          <th scope="col">First</th>
+                          <th scope="col">Handle</th>
+                        </tr>
+                      </thead>
+                      {% csrf_token %}
+                      <tbody>
+                        <tr>
+                          <th scope="row">1</th>
+                          <td>Phone Number<div class="input-group input-group-sm mb-3">
+                            <input type="tel" pattern="\(\d\d\d\) ?\d\d\d-\d\d-\d\d" placeholder="(###) ###-##-##" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+                          </div>
+                        </tr>
+                        <tr>
+                          <th scope="row">2</th>
+                          <td>Email<div class="input-group input-group-sm mb-3">
+                            <input type="email" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+                          </div>
+                        </td>
+                      </tbody>
+                    </table>
+                    <button type="submit" class="btn btn-dark btn-block btn-lg"
                     data-mdb-ripple-color="dark">Register</button>
-
-                </div>
+                  </div>
+                </form>
               </div>
             </div>
           </div>
